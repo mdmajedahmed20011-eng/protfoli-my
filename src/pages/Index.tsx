@@ -4,6 +4,7 @@ import { Hero } from "@/components/Hero";
 import { TrustBadges } from "@/components/TrustBadges";
 import { ScrollProgress } from "@/components/ScrollProgress";
 import { PageLoader } from "@/components/PageLoader";
+import { CustomCursor } from "@/components/CustomCursor";
 
 const Services = lazy(() => import("@/components/Services").then((m) => ({ default: m.Services })));
 const WorkProcess = lazy(() => import("@/components/WorkProcess").then((m) => ({ default: m.WorkProcess })));
@@ -31,7 +32,9 @@ const SectionFallback = () => (
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background cursor-none md:!cursor-auto">
+      {/* Native cursor is hidden on desktop because of Custom Cursor, but visible fallback is used */}
+      <CustomCursor />
       <PageLoader />
       <ScrollProgress />
       <Navbar />
