@@ -169,35 +169,57 @@ export const Services = () => {
           </div>
         </div>
 
-        {/* Mobile Layout: Stacked Cards */}
-        <div className="lg:hidden flex flex-col gap-8">
-          {services.map((service) => (
-            <div key={service.id} className="relative rounded-[2rem] bg-card border border-border/50 overflow-hidden p-8">
-              <div className={`absolute top-0 right-0 w-[200px] h-[200px] rounded-full blur-[80px] opacity-30 ${service.glow}`} />
-              
-              <div className="relative z-10">
-                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center shadow-lg mb-8`}>
-                  <service.icon className="w-8 h-8 text-white" />
-                </div>
+        {/* Mobile Layout: App-like Horizontal Snapping Carousel */}
+        <div className="lg:hidden w-full relative -mx-4 px-4 overflow-hidden">
+          {/* Fading edges for the carousel */}
+          <div className="absolute top-0 bottom-0 left-0 w-8 bg-gradient-to-r from-background to-transparent z-20 pointer-events-none" />
+          <div className="absolute top-0 bottom-0 right-0 w-8 bg-gradient-to-l from-background to-transparent z-20 pointer-events-none" />
+          
+          <div className="flex overflow-x-auto gap-6 pb-12 pt-4 snap-x snap-mandatory hide-scrollbar style-hide-scrollbar" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            {services.map((service) => (
+              <div 
+                key={service.id} 
+                className="relative snap-center shrink-0 w-[85vw] max-w-[320px] rounded-[2rem] bg-card border border-border/50 overflow-hidden p-8
+                shadow-[0_15px_30px_rgba(0,0,0,0.4)] transition-all duration-300 active:scale-[0.98]"
+              >
+                {/* Immersive Mobile Glow */}
+                <motion.div animate={{ opacity: [0.3, 0.6, 0.3] }} transition={{ duration: 4, repeat: Infinity }} className={`absolute -top-10 -right-10 w-[150px] h-[150px] rounded-full blur-[60px] ${service.glow}`} />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent to-background/90 z-0" />
                 
-                <div className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
-                  {service.id} — {service.subtitle}
-                </div>
-                <h3 className="text-3xl font-display font-bold mb-4">{service.title}</h3>
-                <p className="text-muted-foreground mb-8 leading-relaxed">
-                  {service.description}
-                </p>
-                
-                <div className="flex flex-wrap gap-2">
-                  {service.features.map(feature => (
-                     <span key={feature} className="px-3 py-1.5 rounded-full bg-secondary/50 text-xs font-semibold text-foreground">
-                       {feature}
-                     </span>
-                  ))}
+                <div className="relative z-10 flex flex-col h-full">
+                  <div className="flex justify-between items-start mb-8">
+                     <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center shadow-[0_10px_20px_rgba(0,0,0,0.5)]`}>
+                       <service.icon className="w-8 h-8 text-white" />
+                     </div>
+                     <span className="text-4xl font-black text-white/5">{service.id}</span>
+                  </div>
+                  
+                  <div className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
+                    {service.subtitle}
+                  </div>
+                  <h3 className="text-2xl font-display font-bold mb-4 text-white">{service.title}</h3>
+                  <p className="text-muted-foreground text-sm mb-8 leading-relaxed">
+                    {service.description}
+                  </p>
+                  
+                  <div className="flex flex-wrap gap-2 mt-auto">
+                    {service.features.map(feature => (
+                       <span key={feature} className="px-3 py-1.5 rounded-full bg-white/5 border border-white/10 text-[11px] font-bold text-white/80 uppercase tracking-wider backdrop-blur-md">
+                         {feature}
+                       </span>
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
+          
+          {/* Mobile Swipe Indicator */}
+          <div className="flex justify-center items-center gap-2 mt-2 text-muted-foreground/50 text-xs uppercase tracking-widest font-bold">
+             <motion.div animate={{ x: [-5, 0, -5] }} transition={{ duration: 1.5, repeat: Infinity }}>←</motion.div>
+             Swipe to explore
+             <motion.div animate={{ x: [5, 0, 5] }} transition={{ duration: 1.5, repeat: Infinity }}>→</motion.div>
+          </div>
         </div>
       </div>
     </section>
