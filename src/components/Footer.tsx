@@ -1,24 +1,21 @@
 import { ArrowUpRight } from "lucide-react";
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
-import { MagneticButton } from "./animations/AnimatedSection";
+import { motion } from "framer-motion";
 
-const socialLinks = [
-  { name: "LinkedIn", href: "#" },
-  { name: "Twitter", href: "#" },
-  { name: "Instagram", href: "#" },
-  { name: "Dribbble", href: "#" },
-];
+const footerLinks = {
+  services: [
+    { name: "Store Design", href: "#services" },
+    { name: "Theme Development", href: "#services" },
+    { name: "Speed Optimization", href: "#services" },
+    { name: "Store Migration", href: "#services" },
+  ],
+  company: [
+    { name: "About", href: "#about" },
+    { name: "Pricing", href: "#pricing" },
+    { name: "Contact", href: "#contact" },
+  ],
+};
 
 export const Footer = () => {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end end"]
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [-150, 0]);
-
   const scrollToSection = (href: string) => {
     if (href.startsWith("#")) {
       const element = document.querySelector(href);
@@ -28,102 +25,120 @@ export const Footer = () => {
     }
   };
 
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 20 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5 },
+    },
+  };
+
   return (
-    <footer 
-      ref={containerRef}
-      className="relative bg-background overflow-hidden border-t border-border/50 pt-20 pb-10"
-    >
-      {/* Immersive 3D Background */}
-      <div className="absolute inset-0 pointer-events-none">
+    <footer className="relative bg-card border-t border-border">
+      {/* Background */}
+      <div className="absolute inset-0 overflow-hidden">
         <motion.div 
-          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[500px] bg-primary/5 rounded-[100%] blur-[120px] mix-blend-screen"
-          animate={{ scale: [1, 1.2, 1], rotate: [0, -45, 0] }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
+          className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[600px] h-[300px] bg-primary/5 rounded-full blur-[100px]"
+          animate={{ opacity: [0.3, 0.6, 0.3] }}
+          transition={{ duration: 5, repeat: Infinity }}
         />
       </div>
 
-      <motion.div style={{ y }} className="container-custom relative z-10 flex flex-col items-center justify-center">
-        
-        {/* Massive Text CTA */}
-        <div className="w-full text-center mb-20 relative group cursor-pointer" onClick={() => scrollToSection("#contact")}>
-          <motion.div 
-            className="overflow-hidden"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={{
-              hidden: { opacity: 0, y: 100 },
-              visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.25, 1, 0.5, 1] } }
-            }}
-          >
-            <h2 className="text-[12vw] sm:text-[14vw] font-display font-black leading-[0.85] tracking-tighter text-foreground group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-br group-hover:from-white group-hover:to-white/20 transition-all duration-700">
-              LET'S
-            </h2>
-            <h2 className="text-[12vw] sm:text-[14vw] font-display font-black leading-[0.85] tracking-tighter text-transparent bg-clip-text bg-gradient-to-r from-primary via-purple-500 to-pink-500 group-hover:scale-[1.02] transition-transform duration-700">
-              TALK
-            </h2>
-          </motion.div>
-          
-          {/* Hover Floating Button */}
-          <motion.div 
-            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-primary rounded-full flex items-center justify-center text-primary-foreground font-bold text-xl opacity-0 group-hover:opacity-100 scale-50 group-hover:scale-100 transition-all duration-500 pointer-events-none"
-          >
-            <ArrowUpRight className="w-10 h-10" />
-          </motion.div>
-        </div>
-
-        {/* Info Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 w-full mb-20 border-t border-b border-border/50 py-12">
-          <div className="flex flex-col space-y-4">
-            <h4 className="text-sm font-bold tracking-widest text-muted-foreground uppercase">Email</h4>
-            <MagneticButton strength={0.1}>
-              <a href="mailto:majed@majedahmed.com" className="text-xl sm:text-2xl font-bold hover:text-primary transition-colors inline-block">
-                majed@majedahmed.com
-              </a>
-            </MagneticButton>
-          </div>
-          <div className="flex flex-col space-y-4">
-            <h4 className="text-sm font-bold tracking-widest text-muted-foreground uppercase">WhatsApp</h4>
-            <MagneticButton strength={0.1}>
-              <a href="https://wa.me/8801754795557" target="_blank" rel="noreferrer" className="text-xl sm:text-2xl font-bold hover:text-primary transition-colors inline-block">
-                +880 1754795557
-              </a>
-            </MagneticButton>
-          </div>
-          <div className="flex flex-col space-y-4">
-            <h4 className="text-sm font-bold tracking-widest text-muted-foreground uppercase">Socials</h4>
-            <div className="flex flex-wrap gap-4">
-              {socialLinks.map((link) => (
-                <MagneticButton key={link.name} strength={0.2}>
-                  <a href={link.href} className="text-lg font-medium text-muted-foreground hover:text-white transition-colors relative after:content-[''] after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-px after:bg-white hover:after:w-full after:transition-all after:duration-300">
-                    {link.name}
-                  </a>
-                </MagneticButton>
-              ))}
-            </div>
-          </div>
-        </div>
-
-        {/* Bottom Bar */}
-        <div className="w-full flex flex-col md:flex-row justify-between items-center gap-4">
-          <div className="flex items-center gap-3">
-            <motion.div 
-              className="w-3 h-3 bg-green-500 rounded-full"
-              animate={{ scale: [1, 1.4, 1], opacity: [0.5, 1, 0.5] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            />
-            <p className="text-sm font-medium text-muted-foreground uppercase tracking-widest">
-              Available for new projects
+      <motion.div 
+        className="container-custom px-4 sm:px-6 lg:px-8 py-16 lg:py-20 relative z-10"
+        variants={containerVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+      >
+        {/* Top section */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+          {/* Brand */}
+          <motion.div className="lg:col-span-2" variants={itemVariants}>
+            <motion.a 
+              href="#" 
+              className="inline-block mb-6"
+              whileHover={{ scale: 1.05 }}
+            >
+              <span className="text-2xl font-display font-bold text-foreground">
+                Majed<span className="text-primary">.</span>
+              </span>
+            </motion.a>
+            <p className="text-muted-foreground mb-6 max-w-sm">
+              Crafting high-converting Shopify stores for ambitious brands worldwide. 
+              Let's build something amazing together.
             </p>
-          </div>
-          <p className="text-sm text-muted-foreground">
-            © {new Date().getFullYear()} Majed Ahmed.
-          </p>
-          <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="text-sm font-bold flex items-center hover:text-primary transition-colors">
-            BACK TO TOP <ArrowUpRight className="ml-1 w-4 h-4" />
-          </button>
+            <div className="flex items-center gap-2">
+              <motion.div 
+                className="w-2 h-2 bg-green-500 rounded-full"
+                animate={{ scale: [1, 1.3, 1] }}
+                transition={{ duration: 2, repeat: Infinity }}
+              />
+              <span className="text-sm text-muted-foreground">Available for new projects</span>
+            </div>
+          </motion.div>
+
+          {/* Services */}
+          <motion.div variants={itemVariants}>
+            <h4 className="font-semibold mb-6 text-foreground">Services</h4>
+            <ul className="space-y-4">
+              {footerLinks.services.map((link) => (
+                <li key={link.name}>
+                  <motion.button
+                    onClick={() => scrollToSection(link.href)}
+                    className="text-muted-foreground hover:text-foreground transition-colors text-sm link-underline"
+                    whileHover={{ x: 3 }}
+                  >
+                    {link.name}
+                  </motion.button>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
+
+          {/* Company */}
+          <motion.div variants={itemVariants}>
+            <h4 className="font-semibold mb-6 text-foreground">Company</h4>
+            <ul className="space-y-4">
+              {footerLinks.company.map((link) => (
+                <li key={link.name}>
+                  <motion.button
+                    onClick={() => scrollToSection(link.href)}
+                    className="text-muted-foreground hover:text-foreground transition-colors text-sm link-underline"
+                    whileHover={{ x: 3 }}
+                  >
+                    {link.name}
+                  </motion.button>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
         </div>
 
+        {/* Bottom */}
+        <motion.div 
+          className="pt-8 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-4"
+          variants={itemVariants}
+        >
+          <p className="text-sm text-muted-foreground">
+            © {new Date().getFullYear()} Majed Ahmed. All rights reserved.
+          </p>
+          <p className="text-sm text-muted-foreground">
+            Built with passion for ambitious brands
+          </p>
+        </motion.div>
       </motion.div>
     </footer>
   );
