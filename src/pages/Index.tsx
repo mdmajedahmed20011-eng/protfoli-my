@@ -7,10 +7,11 @@ import { PageLoader } from "@/components/PageLoader";
 
 const Services = lazy(() => import("@/components/Services").then((m) => ({ default: m.Services })));
 const WorkProcess = lazy(() => import("@/components/WorkProcess").then((m) => ({ default: m.WorkProcess })));
+const Projects = lazy(() => import("@/components/Projects").then((m) => ({ default: m.Projects })));
+const Comparison = lazy(() => import("@/components/Comparison").then((m) => ({ default: m.Comparison })));
+const Reviews = lazy(() => import("@/components/Reviews").then((m) => ({ default: m.Reviews })));
 const Pricing = lazy(() => import("@/components/Pricing").then((m) => ({ default: m.Pricing })));
 const About = lazy(() => import("@/components/About").then((m) => ({ default: m.About })));
-const Projects = lazy(() => import("@/components/Projects").then((m) => ({ default: m.Projects })));
-const Reviews = lazy(() => import("@/components/Reviews").then((m) => ({ default: m.Reviews })));
 const FAQ = lazy(() => import("@/components/FAQ").then((m) => ({ default: m.FAQ })));
 const Contact = lazy(() => import("@/components/Contact").then((m) => ({ default: m.Contact })));
 const Footer = lazy(() => import("@/components/Footer").then((m) => ({ default: m.Footer })));
@@ -42,6 +43,7 @@ const Index = () => {
         <Services />
         <WorkProcess />
         <Projects />
+        <Comparison />
         <Reviews />
         <Pricing />
         <About />
