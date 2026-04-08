@@ -6,37 +6,69 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { useState } from "react";
 
 const allProjects = [
-  // International Clients
+  // 1. Apollica (Top Tier Tech)
   {
-    id: "eatsurreal",
-    title: "Surreal Cereal",
-    category: "Global Brand",
-    type: "eCommerce",
-    image: "/assets/projects/mockup-all-framed.png",
-    description: "High-energy, conversion-optimized storefront for a wildly popular international cereal brand. Focus on playful UI and frictionless checkout.",
-    tags: ["CRO Optimized", "Custom Design", "Shopify Plus"],
-    link: "https://try.eatsurreal.co.uk/",
-    stats: "+45% Conversion Rate",
-    tab: "international"
-  },
-  {
-    id: "herfantasybox",
-    title: "Her Fantasy Box",
-    category: "Global Brand",
-    type: "Feminine Care",
+    id: "apollica",
+    title: "Apollica Shop",
+    category: "🚧 In Development",
+    type: "Next-Gen eCommerce",
     image: "/assets/projects/mockup-all-framed (1).png",
-    description: "A premium subscription-based eCommerce experience designed with human psychology to maximize trust, retention, and average order value (AOV).",
-    tags: ["Subscriptions", "Trust Engineering", "Premium UI"],
-    link: "https://herfantasybox.com/",
-    stats: "2.5x Customer LTV",
-    tab: "international"
+    description: "Engineering an absolute powerhouse eCommerce platform prioritizing advanced CRO, micro-interactions, and blazing checkout speeds for high-ticket gadgets.",
+    tags: ["Next.js", "Headless", "Advanced UI"],
+    link: "https://www.apollica.shop/",
+    stats: "Upcoming Launch",
+    tab: "ongoing"
   },
+
+  // 2. Andromeda Inani (Luxury Hospitality)
+  {
+    id: "andromedainani",
+    title: "Andromeda Inani",
+    category: "🇧🇩 Local Giant",
+    type: "Hospitality / Booking",
+    image: "/assets/projects/mockup-all-framed.png",
+    description: "A luxury digital booking experience for a premium destination. Implemented persuasion design to increase direct bookings and lower bounce rates.",
+    tags: ["Booking Engine", "Luxury UI", "Persuasion Design"],
+    link: "https://andromedainani.com/",
+    stats: "Increased Direct Booking",
+    tab: "bangladeshi"
+  },
+
+  // 3. Rodala Eco Resort (Hospitality)
+  {
+    id: "rodala",
+    title: "Rodala Eco Resort",
+    category: "🚧 Running Project",
+    type: "Hospitality",
+    image: "/assets/projects/mockup-all-framed (2).png",
+    description: "Building an immersive digital eco-resort experience that reflects nature-centric luxury and encourages high-ticket direct bookings seamlessly.",
+    tags: ["Eco Resort", "Booking System", "Running"],
+    link: "https://majedahmed.com/",
+    stats: "In Progress",
+    tab: "ongoing"
+  },
+
+  // 4. Saima Fashion (Fashion eCommerce)
+  {
+    id: "saimafashion",
+    title: "Saima Fashion",
+    category: "🇧🇩 Local Giant",
+    type: "Fashion eCommerce",
+    image: "/assets/projects/all-devices-blackr.png",
+    description: "Scalable retail architecture built to handle massive local traffic spikes during festive seasons. Emphasized visual hierarchy and fast load speeds.",
+    tags: ["High Traffic", "Visual Hierarchy", "Fast Load"],
+    link: "https://saimafashion.com/",
+    stats: "99.9% Uptime",
+    tab: "bangladeshi"
+  },
+
+  // 5. Annabella Pump (Health / Care Products)
   {
     id: "annabella",
     title: "Annabella Pump",
     category: "Global Brand",
     type: "Health Tech",
-    image: "/assets/projects/mockup-all-framed (2).png",
+    image: "/assets/projects/new.png",
     description: "Sleek, medical-grade brand representation with an intuitive buying journey. Designed to convert highly analytical and emotionally invested buyers.",
     tags: ["Health Tech", "High-Ticket CRO", "Responsive"],
     link: "https://www.annabella-pump.com/",
@@ -44,70 +76,46 @@ const allProjects = [
     tab: "international"
   },
 
-  // Bangladeshi Clients
+  // 6. Her Fantasy Box (Subscription/Jewelry)
   {
-    id: "saimafashion",
-    title: "Saima Fashion",
-    category: "🇧🇩 Local Giant",
-    type: "Fashion eCommerce",
-    image: "/assets/projects/mockup-all-framed (3).png",
-    description: "Scalable retail architecture built to handle massive local traffic spikes during festive seasons. Emphasized visual hierarchy and fast load speeds.",
-    tags: ["High Traffic", "Visual Hierarchy", "Fast Load"],
-    link: "https://saimafashion.com/",
-    stats: "99.9% Uptime",
-    tab: "bangladeshi"
-  },
-  {
-    id: "andromedainani",
-    title: "Andromeda Inani",
-    category: "🇧🇩 Local Giant",
-    type: "Hospitality / Booking",
-    image: "/assets/projects/all-devices-black.png",
-    description: "Luxury digital experience for a premium destination. Implemented persuasive design to increase direct bookings and lower bounce rates.",
-    tags: ["Booking System", "Luxury UI", "Persuasion Design"],
-    link: "https://andromedainani.com/",
-    stats: "Increased Direct Booking",
-    tab: "bangladeshi"
+    id: "herfantasybox",
+    title: "Her Fantasy Box",
+    category: "Global Brand",
+    type: "Feminine Care",
+    image: "/assets/projects/wow.png",
+    description: "A premium subscription-based eCommerce experience designed with human psychology to maximize trust, retention, and average order value (AOV).",
+    tags: ["Subscriptions", "Trust Engineering", "Premium UI"],
+    link: "https://herfantasybox.com/",
+    stats: "2.5x Customer LTV",
+    tab: "international"
   },
 
-  // Ongoing Project
-  {
-    id: "apollica",
-    title: "Apollica Shop",
-    category: "🚧 In Development",
-    type: "Next-Gen eCommerce",
-    image: "/assets/projects/all-devices-blackr.png",
-    description: "Currently engineering an absolute powerhouse eCommerce platform. Building from the ground up prioritizing advanced CRO, micro-interactions, and blazing speeds.",
-    tags: ["Next.js", "Headless", "Advanced Animations"],
-    link: "https://www.apollica.shop/",
-    stats: "Upcoming Launch",
-    tab: "ongoing"
-  },
-  {
-    id: "rodala",
-    title: "Rodala Eco Resort",
-    category: "🚧 Running Project",
-    type: "Hospitality",
-    image: "/assets/projects/new.png",
-    description: "Building an immersive digital resort experience that reflects nature-centric luxury and encourages direct bookings.",
-    tags: ["Eco Resort", "Booking System", "Running"],
-    link: "https://majedahmed.com/",
-    stats: "In Progress",
-    tab: "ongoing"
-  },
-
-  // Demo Project
+  // 7. Premium Salon Demo
   {
     id: "salon",
     title: "Premium Salon Demo",
     category: "🧪 Concept UI",
     type: "Service Business",
-    image: "/assets/projects/wow.png",
+    image: "/assets/projects/mockup-all-framed (3).png",
     description: "An experimental playground showcasing booking architectures, fluid transitions, and a modern aesthetic designed entirely to evoke a sense of grooming luxury.",
-    tags: ["React native feel", "Fluid UI", "Demo"],
+    tags: ["Fluid UI", "Booking Flow", "Demo"],
     link: "https://salon-sfh1.vercel.app/",
     stats: "Pushing Boundaries",
     tab: "demo"
+  },
+
+  // 8. Surreal Cereal (Playful brand)
+  {
+    id: "eatsurreal",
+    title: "Surreal Cereal",
+    category: "Global Brand",
+    type: "eCommerce",
+    image: "/assets/projects/all-devices-black.png",
+    description: "High-energy, conversion-optimized storefront. Focus on playful UI, vibrant branding, and frictionless checkout to capture impulse buyers.",
+    tags: ["CRO Optimized", "Custom Design", "Shopify Plus"],
+    link: "https://try.eatsurreal.co.uk/",
+    stats: "+45% Conversion Rate",
+    tab: "international"
   }
 ];
 
