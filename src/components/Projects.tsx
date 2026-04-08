@@ -155,13 +155,15 @@ export const Projects = () => {
         </AnimatedSection>
 
         <Tabs defaultValue="all" className="w-full flex flex-col items-center mb-12" onValueChange={setActiveTab}>
-          <TabsList className="bg-secondary/50 backdrop-blur-md border border-border/50 p-1.5 h-auto rounded-full flex-wrap justify-center max-w-full overflow-x-auto gap-1">
-            <TabsTrigger value="all" className="rounded-full px-5 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all">All Works</TabsTrigger>
-            <TabsTrigger value="international" className="rounded-full px-5 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all flex items-center gap-2"><Globe className="w-4 h-4"/> Global</TabsTrigger>
-            <TabsTrigger value="bangladeshi" className="rounded-full px-5 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all flex items-center gap-2"><MapPin className="w-4 h-4"/> Bangladesh</TabsTrigger>
-            <TabsTrigger value="ongoing" className="rounded-full px-5 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all flex items-center gap-2"><Rocket className="w-4 h-4"/> Ongoing</TabsTrigger>
-            <TabsTrigger value="demo" className="rounded-full px-5 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all flex items-center gap-2"><FlaskConical className="w-4 h-4"/> Demos</TabsTrigger>
-          </TabsList>
+          <div className="w-full overflow-x-auto pb-4 md:pb-0 flex justify-start md:justify-center px-4 scrollbar-none snap-x">
+            <TabsList className="bg-secondary/50 backdrop-blur-md border border-border/50 p-1.5 h-auto rounded-full inline-flex flex-nowrap w-max gap-1">
+              <TabsTrigger value="all" className="rounded-full px-5 py-2.5 whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all snap-start">All Works</TabsTrigger>
+              <TabsTrigger value="international" className="rounded-full px-4 py-2.5 whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all flex items-center gap-2 snap-start"><Globe className="w-4 h-4"/> Global</TabsTrigger>
+              <TabsTrigger value="bangladeshi" className="rounded-full px-4 py-2.5 whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all flex items-center gap-2 snap-start"><MapPin className="w-4 h-4"/> Bangladesh</TabsTrigger>
+              <TabsTrigger value="ongoing" className="rounded-full px-4 py-2.5 whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all flex items-center gap-2 snap-start"><Rocket className="w-4 h-4"/> Ongoing</TabsTrigger>
+              <TabsTrigger value="demo" className="rounded-full px-4 py-2.5 whitespace-nowrap data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all flex items-center gap-2 snap-start"><FlaskConical className="w-4 h-4"/> Demos</TabsTrigger>
+            </TabsList>
+          </div>
         </Tabs>
 
         <motion.div 
@@ -180,7 +182,7 @@ export const Projects = () => {
                 className="group relative bg-card/80 backdrop-blur-xl rounded-[2rem] overflow-hidden border border-border/60 hover:border-primary/50 transition-colors duration-500 premium-card flex flex-col shadow-lg hover:shadow-primary/10"
               >
                 {/* Visual Header / Image Box */}
-                <div className="relative h-64 overflow-hidden p-2 rounded-t-[2rem]">
+                <div className="relative h-56 md:h-64 overflow-hidden p-2 rounded-t-[2rem]">
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent z-10" />
                   
                   {/* Floating Stats Badge - Psychological Trigger (Social Proof) */}
@@ -208,7 +210,7 @@ export const Projects = () => {
                 </div>
 
                 {/* Cognitive Box (Content) */}
-                <div className="p-8 flex-1 flex flex-col relative z-20 -mt-6 bg-card rounded-[2rem] shadow-[0_-10px_30px_rgba(0,0,0,0.1)] border-t border-border/50">
+                <div className="p-5 md:p-8 flex-1 flex flex-col relative z-20 -mt-6 bg-card rounded-[2rem] shadow-[0_-10px_30px_rgba(0,0,0,0.1)] border-t border-border/50">
                   <div className="flex items-center gap-2 mb-3">
                     <Target className="w-4 h-4 text-muted-foreground" />
                     <span className="text-xs font-medium tracking-wider uppercase text-muted-foreground">
@@ -216,15 +218,15 @@ export const Projects = () => {
                     </span>
                   </div>
 
-                  <h3 className="text-2xl font-display font-bold mb-4 group-hover:text-primary transition-colors">
+                  <h3 className="text-xl md:text-2xl font-display font-bold mb-4 group-hover:text-primary transition-colors">
                     {project.title}
                   </h3>
                   
-                  <p className="text-muted-foreground mb-8 text-sm leading-relaxed flex-1">
+                  <p className="text-muted-foreground mb-6 md:mb-8 text-sm leading-relaxed flex-1">
                     {project.description}
                   </p>
 
-                  <div className="flex flex-wrap gap-2 mb-8">
+                  <div className="flex flex-wrap gap-2 mb-6 md:mb-8">
                     {project.tags.map(tag => (
                       <span key={tag} className="text-xs font-semibold text-foreground/80 bg-secondary/80 border border-border/50 px-3 py-1.5 rounded-full">
                         {tag}

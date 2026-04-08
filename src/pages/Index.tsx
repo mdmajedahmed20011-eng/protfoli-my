@@ -71,7 +71,7 @@ const seoData = {
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background cursor-none md:!cursor-auto">
+    <div className="min-h-screen bg-background md:cursor-none">
       {/* Invisible SEO Layer: Rich Snippets for Google Search */}
       <script
         type="application/ld+json"
