@@ -30,9 +30,54 @@ const SectionFallback = () => (
   </div>
 );
 
+const seoData = {
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Person",
+      "name": "Majed Ahmed",
+      "url": "https://majedahmed.com/",
+      "jobTitle": "High-Converting Shopify Developer & FB Ads Expert",
+      "image": "https://majedahmed.com/assets/majed-photo.webp",
+      "sameAs": [
+        "https://www.facebook.com/skdamarbariresort",
+        "https://github.com/mdmajedahmed20011-eng"
+      ],
+      "knowsAbout": ["Shopify Development", "Facebook Ads", "Conversion Rate Optimization", "Web Performance"]
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How long does it take to build a Shopify store?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "The timeline depends on the package you choose. Basic Starter stores typically take 3-5 days, Growth Plan stores take 7-10 days, and Premium Scale projects can take 10-14 days. Rush delivery is available for an additional fee."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What payment methods can my store accept?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Your Shopify store can accept all major credit cards, PayPal, Apple Pay, Google Pay, and many local payment methods. Shopify Payments is available in most countries with competitive transaction fees."
+          }
+        }
+      ]
+    }
+  ]
+};
+
 const Index = () => {
   return (
     <div className="min-h-screen bg-background cursor-none md:!cursor-auto">
+      {/* Invisible SEO Layer: Rich Snippets for Google Search */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(seoData) }}
+      />
+      
       {/* Native cursor is hidden on desktop because of Custom Cursor, but visible fallback is used */}
       <CustomCursor />
       <PageLoader />

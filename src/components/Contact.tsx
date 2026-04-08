@@ -1,10 +1,10 @@
 import { useState } from "react";
-import { Send, Mail, MessageCircle, MapPin, ArrowRight, Clock, CheckCircle2 } from "lucide-react";
+import { Send, Mail, MessageCircle, MapPin, ArrowRight, Clock, CheckCircle2, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { AnimatedSection, MagneticButton } from "./animations/AnimatedSection";
 
 const contactMethods = [
@@ -12,19 +12,19 @@ const contactMethods = [
     icon: Mail,
     label: "Email",
     value: "majed@majedahmed.com",
-    href: "mailto:majed@majedahmed.com",
+    copyValue: "majed@majedahmed.com",
   },
   {
     icon: MessageCircle,
     label: "WhatsApp",
     value: "+880 1754795557",
-    href: "https://wa.me/8801754795557",
+    copyValue: "+8801754795557",
   },
   {
     icon: MapPin,
     label: "Location",
     value: "Working Worldwide",
-    href: null,
+    copyValue: null,
   },
 ];
 
@@ -35,6 +35,7 @@ export const Contact = () => {
     budget: "",
     message: "",
   });
+  const [copiedMethod, setCopiedMethod] = useState<string | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -47,6 +48,14 @@ export const Contact = () => {
     const message = `Hi, I'm ${formData.name}.\n\nEmail: ${formData.email}\nBudget: ${formData.budget}\n\nProject Details:\n${formData.message}`;
     const whatsappUrl = `https://wa.me/8801754795557?text=${encodeURIComponent(message)}`;
     window.open(whatsappUrl, '_blank');
+  };
+
+  const handleCopy = (method: typeof contactMethods[0]) => {
+    if (method.copyValue) {
+      navigator.clipboard.writeText(method.copyValue);
+      setCopiedMethod(method.label);
+      setTimeout(() => setCopiedMethod(null), 2000);
+    }
   };
 
   return (
@@ -198,35 +207,46 @@ export const Contact = () => {
           {/* Contact Info */}
           <AnimatedSection className="lg:col-span-2 space-y-6" direction="right" delay={0.3}>
             {/* Contact methods */}
-            {contactMethods.map((method, index) => (
-              <motion.div
-                key={method.label}
-                className={`p-6 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all group ${
-                  method.href ? 'cursor-pointer' : ''
-                }`}
-                onClick={() => method.href && window.open(method.href, method.href.startsWith('mailto') ? '_self' : '_blank')}
-                whileHover={{ scale: 1.02, y: -4 }}
-                initial={{ opacity: 0, x: 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <method.icon className="w-6 h-6 text-primary" />
+            {contactMethods.map((method, index) => {
+              const isCopied = copiedMethod === method.label;
+
+              return (
+                <motion.div
+                  key={method.label}
+                  className={`p-6 bg-card rounded-2xl border border-border hover:border-primary/50 transition-all group ${
+                    method.copyValue ? 'cursor-pointer' : ''
+                  }`}
+                  onClick={() => handleCopy(method)}
+                  whileHover={{ scale: 1.02, y: -4 }}
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="flex items-center gap-4">
+                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-colors ${isCopied ? 'bg-green-500/20 text-green-500' : 'bg-primary/10 text-primary group-hover:bg-primary/20'}`}>
+                      <AnimatePresence mode="wait">
+                        <motion.div
+                          key={isCopied ? 'check' : 'icon'}
+                          initial={{ scale: 0, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          exit={{ scale: 0, opacity: 0 }}
+                          transition={{ duration: 0.2 }}
+                        >
+                          {isCopied ? <Check className="w-6 h-6" /> : <method.icon className="w-6 h-6" />}
+                        </motion.div>
+                      </AnimatePresence>
+                    </div>
+                    <div className="flex-1">
+                      <p className="text-sm text-muted-foreground">{method.label}</p>
+                      <p className={`font-semibold transition-colors ${isCopied ? 'text-green-500' : 'group-hover:text-primary'}`}>
+                        {isCopied ? "Copied!" : method.value}
+                      </p>
+                    </div>
                   </div>
-                  <div className="flex-1">
-                    <p className="text-sm text-muted-foreground">{method.label}</p>
-                    <p className="font-semibold group-hover:text-primary transition-colors">
-                      {method.value}
-                    </p>
-                  </div>
-                  {method.href && (
-                    <ArrowRight className="w-5 h-5 text-muted-foreground group-hover:text-primary group-hover:translate-x-1 transition-all" />
-                  )}
-                </div>
-              </motion.div>
-            ))}
+                </motion.div>
+              );
+            })}
 
             {/* Response time */}
             <motion.div 
