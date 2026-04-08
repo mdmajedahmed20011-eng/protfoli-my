@@ -92,32 +92,20 @@ export const Reviews = () => {
 
         {/* Infinite Scrolling Marquee Container */}
         <div 
-          className="relative -mx-[50vw] left-[50%] right-[50%] w-[100vw] overflow-hidden flex flex-col gap-8 py-10"
+          className="relative -mx-[50vw] left-[50%] right-[50%] w-[100vw] overflow-hidden py-10"
           style={{ WebkitMaskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)", maskImage: "linear-gradient(to right, transparent, black 10%, black 90%, transparent)" }}
         >
            
-           {/* Top Row - Scrolling Left */}
+           {/* Single Massive Row - Scrolling Left */}
            <div className="flex w-max">
               <motion.div 
-                animate={{ x: [0, -1035] }} 
+                animate={{ x: [0, -1400] }} 
                 transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
                 className="flex gap-8 px-4"
               >
-                 {scrollItems.map((review, idx) => (
+                 {/* Duplicate items heavily for ultra-widescreen smooth loop */}
+                 {[...reviews, ...reviews, ...reviews, ...reviews].map((review, idx) => (
                     <ReviewCard key={`row1-${idx}`} review={review} />
-                 ))}
-              </motion.div>
-           </div>
-
-           {/* Bottom Row - Scrolling Right */}
-           <div className="flex w-max ml-[-1000px]">
-              <motion.div 
-                animate={{ x: [0, 1035] }} 
-                transition={{ duration: 35, repeat: Infinity, ease: "linear" }}
-                className="flex gap-8 px-4"
-              >
-                 {[...scrollItems].reverse().map((review, idx) => (
-                    <ReviewCard key={`row2-${idx}`} review={review} />
                  ))}
               </motion.div>
            </div>
