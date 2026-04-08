@@ -86,13 +86,12 @@ const Index = () => {
       <Hero />
       <TrustBadges />
 
-      {/* Lazy-load below-the-fold sections for faster first paint */}
       <Suspense fallback={<SectionFallback />}>
-        <Services />
-        <WorkProcess />
         <Projects />
-        <Comparison />
+        <WorkProcess />
         <Reviews />
+        <Comparison />
+        <Services />
         <Pricing />
         <About />
         <FAQ />
