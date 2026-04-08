@@ -63,8 +63,12 @@ export const Comparison = () => {
             <div className="absolute top-0 left-0 w-full h-1/2 bg-gradient-to-b from-primary/10 to-transparent pointer-events-none" />
             
             <div className="flex items-center gap-3 mb-10 relative z-10">
-              <div className="w-10 h-10 rounded-full bg-primary flex items-center justify-center font-bold text-lg text-primary-foreground">
-                M
+              <div className="w-12 h-12 rounded-full border-2 border-primary/50 overflow-hidden flex items-center justify-center shrink-0">
+                <img 
+                  src="/assets/majed-photo.webp" 
+                  alt="Majed Ahmed" 
+                  className="w-full h-full object-cover"
+                />
               </div>
               <h3 className="text-2xl font-bold">Majed Ahmed</h3>
             </div>
