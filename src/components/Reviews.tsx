@@ -8,7 +8,7 @@ const reviews = [
     name: "Sojib Ahmed",
     position: "Marketing Manager",
     avatar: "/assets/logo/reviwe marketing manager sojib ahmed.png",
-    content: "Working with this team has completely changed our conversion metrics. Not only did they build something beautiful, they actually understood marketing psychology. A total game changer for our ad campaigns.",
+    content: "Working with this team has completely changed our conversion metrics. Not only did they build something beautiful, they actually understood marketing psychology. A total game-changer for our ad campaigns.",
     rating: 5,
   },
   {
@@ -16,7 +16,7 @@ const reviews = [
     name: "Kanchan",
     position: "Project Manager",
     avatar: "/assets/logo/manager Kanchan.jpg",
-    content: "We had very complex requirements and a tight deadline. They managed the entire process flawlessly, communicating every step of the way. The end result was lightning fast and pixel perfect.",
+    content: "We had very complex requirements and a tight deadline. They managed the entire process flawlessly, communicating every step of the way. The end result was lightning-fast and pixel-perfect.",
     rating: 5,
   },
   {
@@ -30,7 +30,7 @@ const reviews = [
   {
     id: 4,
     name: "Founder",
-    position: "apollica",
+    position: "Founder, Apollica",
     avatar: "/assets/logo/reviwe by ceo.webp",
     content: "Phenomenal attention to detail. Instead of just delivering code, they delivered a business solution designed to grow our revenue. I highly recommend them to anyone scaling their brand.",
     rating: 5,
@@ -84,7 +84,7 @@ export const Reviews = () => {
             >
                <motion.div animate={{ left: ['-100%', '200%'] }} transition={{ duration: 3, repeat: Infinity, delay: 1.5 }} className="absolute inset-0 w-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12" />
                <TrendingUp className="w-12 h-12 text-green-400 mb-4 drop-shadow-[0_0_15px_rgba(74,222,128,0.5)]" />
-               <div className="text-4xl font-black text-white mb-1">25+</div>
+               <div className="text-4xl font-black text-white mb-1">50+</div>
                <div className="text-sm text-white/60 font-bold uppercase tracking-wider">Businesses Scaled</div>
             </motion.div>
           </div>

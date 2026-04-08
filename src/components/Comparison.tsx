@@ -5,8 +5,8 @@ import { Button } from "./ui/button";
 
 const myBenefits = [
   "Results-oriented, conversion-focused design",
-  "Experience with 25+ successful businesses",
-  "Lightning fast loading speeds",
+  "Experience with 50+ successful businesses",
+  "Lightning-fast loading speeds",
   "Proven eCommerce Funnel Strategies",
   "Personalized 1-on-1 Communication",
   "24/7 Support, Anytime You Need Me"

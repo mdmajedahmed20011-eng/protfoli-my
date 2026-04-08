@@ -185,7 +185,7 @@ export const Hero = () => {
                   </svg>
                 ))}
               </div>
-              <span className="font-semibold text-foreground mt-1">Trusted by 25+ businesses</span>
+              <span className="font-semibold text-foreground mt-1">Trusted by 50+ businesses</span>
             </div>
           </motion.div>
 
@@ -231,7 +231,7 @@ export const Hero = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: 1 }}
             >
-              Trusted by 30+ brands worldwide
+              Trusted by 50+ brands worldwide
             </motion.p>
             <div className="flex flex-wrap items-center justify-center gap-x-12 gap-y-8">
               {[
