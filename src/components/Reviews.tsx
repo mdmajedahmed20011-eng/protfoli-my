@@ -21,8 +21,8 @@ const reviews = [
   },
   {
     id: 3,
-    name: "Anonymous",
-    position: "CEO",
+    name: "Raihan Sabuj",
+    position: "CEO, Rodala Eco Resort",
     avatar: "/assets/logo/reviwe by ceo.jpg",
     content: "Our online presence finally mirrors the quality of our brand. The custom integrations and seamless aesthetic have directly resulted in higher average order values and customer loyalty.",
     rating: 5,
