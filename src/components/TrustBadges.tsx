@@ -4,12 +4,12 @@ const badges = [
   {
     icon: ShieldCheck,
     title: "Shopify Partner",
-    description: "50+ Stores Built",
+    description: "25+ Stores Built",
   },
   {
     icon: Megaphone,
     title: "Facebook Ads Expert",
-    description: "50+ Campaigns",
+    description: "25+ Campaigns",
   },
   {
     icon: Star,

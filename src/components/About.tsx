@@ -6,8 +6,8 @@ import majedPhoto from "@/assets/majed-photo.webp";
 
 const stats = [
   { icon: Award, value: 3, suffix: "+", label: "Years Experience" },
-  { icon: Users, value: 50, suffix: "+", label: "Shopify Stores" },
-  { icon: Clock, value: 50, suffix: "+", label: "FB Ads Campaigns" },
+  { icon: Users, value: 25, suffix: "+", label: "Shopify Stores" },
+  { icon: Clock, value: 25, suffix: "+", label: "FB Ads Campaigns" },
   { icon: Target, value: 98, suffix: "%", label: "Client Retention" },
 ];
 
@@ -87,8 +87,8 @@ export const About = () => {
                     {/* Quick stats */}
                     <div className="grid grid-cols-3 gap-4 w-full">
                       {[
-                        { value: "50+", label: "Stores" },
-                        { value: "50+", label: "FB Ads" },
+                        { value: "25+", label: "Stores" },
+                        { value: "25+", label: "FB Ads" },
                         { value: "98%", label: "Success" },
                       ].map((stat, i) => (
                         <motion.div 
@@ -142,7 +142,7 @@ export const About = () => {
                 dedicated to helping brands succeed in the e-commerce world.
               </p>
               <p>
-                With over 3 years of experience, 50+ Shopify stores built, and 50+ successful 
+                With over 3 years of experience, 25+ Shopify stores built, and 25+ successful 
                 Facebook Ads campaigns, I help businesses transform their online presence 
                 and achieve remarkable growth through data-driven strategies.
               </p>

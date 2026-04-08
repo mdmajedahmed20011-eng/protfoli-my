@@ -84,7 +84,7 @@ export const Reviews = () => {
             >
                <motion.div animate={{ left: ['-100%', '200%'] }} transition={{ duration: 3, repeat: Infinity, delay: 1.5 }} className="absolute inset-0 w-1/2 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12" />
                <TrendingUp className="w-12 h-12 text-green-400 mb-4 drop-shadow-[0_0_15px_rgba(74,222,128,0.5)]" />
-               <div className="text-4xl font-black text-white mb-1">50+</div>
+               <div className="text-4xl font-black text-white mb-1">25+</div>
                <div className="text-sm text-white/60 font-bold uppercase tracking-wider">Businesses Scaled</div>
             </motion.div>
           </div>
