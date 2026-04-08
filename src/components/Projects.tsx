@@ -6,116 +6,116 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { useState } from "react";
 
 const allProjects = [
-  // 1. Apollica (Top Tier Tech)
-  {
-    id: "apollica",
-    title: "Apollica Shop",
-    category: "🚧 In Development",
-    type: "Next-Gen eCommerce",
-    image: "/assets/projects/mockup-all-framed (1).png",
-    description: "Engineering an absolute powerhouse eCommerce platform prioritizing advanced CRO, micro-interactions, and blazing checkout speeds for high-ticket gadgets.",
-    tags: ["Next.js", "Headless", "Advanced UI"],
-    link: "https://www.apollica.shop/",
-    stats: "Upcoming Launch",
-    tab: "ongoing"
-  },
-
-  // 2. Andromeda Inani (Luxury Hospitality)
-  {
-    id: "andromedainani",
-    title: "Andromeda Inani",
-    category: "🇧🇩 Local Giant",
-    type: "Hospitality / Booking",
-    image: "/assets/projects/mockup-all-framed.png",
-    description: "A luxury digital booking experience for a premium destination. Implemented persuasion design to increase direct bookings and lower bounce rates.",
-    tags: ["Booking Engine", "Luxury UI", "Persuasion Design"],
-    link: "https://andromedainani.com/",
-    stats: "Increased Direct Booking",
-    tab: "bangladeshi"
-  },
-
-  // 3. Rodala Eco Resort (Hospitality)
-  {
-    id: "rodala",
-    title: "Rodala Eco Resort",
-    category: "🚧 Running Project",
-    type: "Hospitality",
-    image: "/assets/projects/mockup-all-framed (2).png",
-    description: "Building an immersive digital eco-resort experience that reflects nature-centric luxury and encourages high-ticket direct bookings seamlessly.",
-    tags: ["Eco Resort", "Booking System", "Running"],
-    link: "https://majedahmed.com/",
-    stats: "In Progress",
-    tab: "ongoing"
-  },
-
-  // 4. Saima Fashion (Fashion eCommerce)
+  // 1. Saima Fashion
   {
     id: "saimafashion",
     title: "Saima Fashion",
     category: "🇧🇩 Local Giant",
     type: "Fashion eCommerce",
     image: "/assets/projects/all-devices-blackr.png",
-    description: "Scalable retail architecture built to handle massive local traffic spikes during festive seasons. Emphasized visual hierarchy and fast load speeds.",
-    tags: ["High Traffic", "Visual Hierarchy", "Fast Load"],
+    description: "Premium Women's Ethnic Wear platform built for a trusted Dhaka-based brand. Features seamless navigation for Salwar Kameez, fast delivery flows, and reliable architecture capable of handling heavy festive traffic.",
+    tags: ["Ethnic Wear", "High Traffic", "eCommerce"],
     link: "https://saimafashion.com/",
-    stats: "99.9% Uptime",
+    stats: "Trusted Since 2004",
     tab: "bangladeshi"
   },
 
-  // 5. Annabella Pump (Health / Care Products)
-  {
-    id: "annabella",
-    title: "Annabella Pump",
-    category: "Global Brand",
-    type: "Health Tech",
-    image: "/assets/projects/new.png",
-    description: "Sleek, medical-grade brand representation with an intuitive buying journey. Designed to convert highly analytical and emotionally invested buyers.",
-    tags: ["Health Tech", "High-Ticket CRO", "Responsive"],
-    link: "https://www.annabella-pump.com/",
-    stats: "Industry Leading UX",
-    tab: "international"
-  },
-
-  // 6. Her Fantasy Box (Subscription/Jewelry)
-  {
-    id: "herfantasybox",
-    title: "Her Fantasy Box",
-    category: "Global Brand",
-    type: "Feminine Care",
-    image: "/assets/projects/wow.png",
-    description: "A premium subscription-based eCommerce experience designed with human psychology to maximize trust, retention, and average order value (AOV).",
-    tags: ["Subscriptions", "Trust Engineering", "Premium UI"],
-    link: "https://herfantasybox.com/",
-    stats: "2.5x Customer LTV",
-    tab: "international"
-  },
-
-  // 7. Premium Salon Demo
-  {
-    id: "salon",
-    title: "Premium Salon Demo",
-    category: "🧪 Concept UI",
-    type: "Service Business",
-    image: "/assets/projects/mockup-all-framed (3).png",
-    description: "An experimental playground showcasing booking architectures, fluid transitions, and a modern aesthetic designed entirely to evoke a sense of grooming luxury.",
-    tags: ["Fluid UI", "Booking Flow", "Demo"],
-    link: "https://salon-sfh1.vercel.app/",
-    stats: "Pushing Boundaries",
-    tab: "demo"
-  },
-
-  // 8. Surreal Cereal (Playful brand)
+  // 2. Surreal Cereal
   {
     id: "eatsurreal",
     title: "Surreal Cereal",
     category: "Global Brand",
     type: "eCommerce",
     image: "/assets/projects/all-devices-black.png",
-    description: "High-energy, conversion-optimized storefront. Focus on playful UI, vibrant branding, and frictionless checkout to capture impulse buyers.",
-    tags: ["CRO Optimized", "Custom Design", "Shopify Plus"],
+    description: "A conversion-optimized, high-energy storefront for a playful FMCG brand. Engineered with vibrant, frictionless UI to capture impulse buyers and maximize online sales.",
+    tags: ["CRO Optimized", "Vibrant UI", "Shopify Plus"],
     link: "https://try.eatsurreal.co.uk/",
     stats: "+45% Conversion Rate",
     tab: "international"
+  },
+
+  // 3. Her Fantasy Box
+  {
+    id: "herfantasybox",
+    title: "Her Fantasy Box",
+    category: "Global Brand",
+    type: "Feminine Care",
+    image: "/assets/projects/wow.png",
+    description: "A premium subscription eCommerce shop tailored for natural feminine health products. Designed using trust engineering to increase customer retention and highlight chemical-free products.",
+    tags: ["Health Tech", "Trust Engineering", "Subscriptions"],
+    link: "https://herfantasybox.com/",
+    stats: "2.5x Customer LTV",
+    tab: "international"
+  },
+
+  // 4. Rodala Eco Resort
+  {
+    id: "rodala",
+    title: "Rodala Eco Resort",
+    category: "🚧 Running Project",
+    type: "Hospitality",
+    image: "/assets/projects/mockup-all-framed (2).png",
+    description: "An immersive digital retreat reflecting a beautiful eco-friendly resort in Sreemangal tea gardens. Features intuitive direct booking for pool villas and cottages.",
+    tags: ["Eco Resort", "Booking Engine", "Running"],
+    link: "https://majedahmed.com/",
+    stats: "In Progress",
+    tab: "ongoing"
+  },
+
+  // 5. Andromeda Inani
+  {
+    id: "andromedainani",
+    title: "Andromeda Inani",
+    category: "🇧🇩 Local Giant",
+    type: "Hospitality / Booking",
+    image: "/assets/projects/mockup-all-framed.png",
+    description: "Luxury digital booking experience for a premier Inani Beach resort in Cox's Bazar. Emphasized visual persuasion highlighting sea-view rooms to increase direct hotel bookings.",
+    tags: ["Booking System", "Luxury UI", "Persuasion Design"],
+    link: "https://andromedainani.com/",
+    stats: "Increased Direct Booking",
+    tab: "bangladeshi"
+  },
+
+  // 6. Apollica Shop
+  {
+    id: "apollica",
+    title: "Apollica Shop",
+    category: "🚧 In Development",
+    type: "Next-Gen eCommerce",
+    image: "/assets/projects/mockup-all-framed (1).png",
+    description: "A modern tech eCommerce store selling smart gadgets for a modern living experience. Built to prioritize speed, micro-interactions, and a sleek dark aesthetic.",
+    tags: ["Smart Gadgets", "Next.js", "Headless"],
+    link: "https://www.apollica.shop/",
+    stats: "Upcoming Launch",
+    tab: "ongoing"
+  },
+
+  // 7. Annabella Pump
+  {
+    id: "annabella",
+    title: "Annabella Pump",
+    category: "Global Brand",
+    type: "Health Tech",
+    image: "/assets/projects/new.png",
+    description: "Sleek, medical-grade storefront for an innovative electric breast pump. The layout clearly communicates the 50% increase in milk production to convert highly analytical parents.",
+    tags: ["Med-Tech", "High-Ticket CRO", "Responsive"],
+    link: "https://www.annabella-pump.com/",
+    stats: "Industry Leading UX",
+    tab: "international"
+  },
+
+  // 8. Premium Salon Demo
+  {
+    id: "salon",
+    title: "LuxeSalon Demo",
+    category: "🧪 Concept UI",
+    type: "Service Business",
+    image: "/assets/projects/mockup-all-framed (3).png",
+    description: "An experimental web application showcasing a premium hair, spa, and beauty salon booking experience. Designed entirely to evoke a sense of grooming luxury.",
+    tags: ["Fluid UI", "Booking Flow", "Demo"],
+    link: "https://salon-sfh1.vercel.app/",
+    stats: "Pushing Boundaries",
+    tab: "demo"
   }
 ];
 
