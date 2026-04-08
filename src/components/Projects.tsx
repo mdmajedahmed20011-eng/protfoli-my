@@ -1,9 +1,9 @@
-import { ExternalLink, TrendingUp, Sparkles, Target, Rocket, Globe, MapPin, Code2, FlaskConical, ArrowRight } from "lucide-react";
+import { ExternalLink, TrendingUp, Sparkles, Target, Rocket, Globe, MapPin, Code2, FlaskConical } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import { AnimatedSection } from "./animations/AnimatedSection";
+import { AnimatedSection, StaggerContainer, StaggerItem } from "./animations/AnimatedSection";
 import { Button } from "./ui/button";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 
 const allProjects = [
   // 1. Saima Fashion
@@ -121,20 +121,10 @@ const allProjects = [
 
 export const Projects = () => {
   const [activeTab, setActiveTab] = useState("all");
-  const [hoveredProject, setHoveredProject] = useState<string | null>(null);
-  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
   const filteredProjects = activeTab === "all" 
     ? allProjects 
     : allProjects.filter(p => p.tab === activeTab);
-
-  useEffect(() => {
-    const updateMousePos = (e: MouseEvent) => {
-      setMousePos({ x: e.clientX, y: e.clientY });
-    };
-    window.addEventListener("mousemove", updateMousePos);
-    return () => window.removeEventListener("mousemove", updateMousePos);
-  }, []);
 
   return (
     <section id="portfolio" className="relative pb-32 pt-20 overflow-hidden bg-background">
@@ -143,32 +133,6 @@ export const Projects = () => {
         <div className="absolute -top-1/4 -right-1/4 w-3/4 h-3/4 bg-primary/5 rounded-full blur-[120px]" />
         <div className="absolute top-1/2 -left-1/4 w-1/2 h-1/2 bg-accent/5 rounded-full blur-[100px]" />
       </div>
-
-      {/* Floating Image Reveal Component (Desktop Only) */}
-      <AnimatePresence>
-        {hoveredProject && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, rotate: -5 }}
-            animate={{ opacity: 1, scale: 1, rotate: 0 }}
-            exit={{ opacity: 0, scale: 0.8, rotate: 5 }}
-            transition={{ type: "spring", stiffness: 300, damping: 25, mass: 0.5 }}
-            className="fixed pointer-events-none z-[100] hidden lg:block w-[450px] aspect-video rounded-[1.5rem] overflow-hidden shadow-2xl border border-white/10 bg-background"
-            style={{
-              left: mousePos.x,
-              top: mousePos.y,
-              x: "-50%",
-              y: "-50%",
-            }}
-          >
-            <img 
-              src={filteredProjects.find(p => p.id === hoveredProject)?.image} 
-              alt="Project preview" 
-              className="w-full h-full object-cover transform scale-105"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-background/50 to-transparent mix-blend-overlay" />
-          </motion.div>
-        )}
-      </AnimatePresence>
 
       <div className="container-custom relative z-10">
         <AnimatedSection className="text-center max-w-4xl mx-auto mb-16">
@@ -190,8 +154,8 @@ export const Projects = () => {
           </p>
         </AnimatedSection>
 
-        <Tabs defaultValue="all" className="w-full flex flex-col items-center mb-16" onValueChange={setActiveTab}>
-          <TabsList className="bg-secondary/50 backdrop-blur-md border border-border/50 p-1.5 h-auto rounded-full flex-wrap justify-center max-w-[95vw] sm:max-w-full overflow-x-auto gap-1">
+        <Tabs defaultValue="all" className="w-full flex flex-col items-center mb-12" onValueChange={setActiveTab}>
+          <TabsList className="bg-secondary/50 backdrop-blur-md border border-border/50 p-1.5 h-auto rounded-full flex-wrap justify-center max-w-full overflow-x-auto gap-1">
             <TabsTrigger value="all" className="rounded-full px-5 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all">All Works</TabsTrigger>
             <TabsTrigger value="international" className="rounded-full px-5 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all flex items-center gap-2"><Globe className="w-4 h-4"/> Global</TabsTrigger>
             <TabsTrigger value="bangladeshi" className="rounded-full px-5 py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground transition-all flex items-center gap-2"><MapPin className="w-4 h-4"/> Bangladesh</TabsTrigger>
@@ -200,49 +164,9 @@ export const Projects = () => {
           </TabsList>
         </Tabs>
 
-        {/* ======================= */}
-        {/* DESKTOP LAYOUT (HOVER REVEAL) */}
-        {/* ======================= */}
-        <div className="hidden lg:flex flex-col border-t border-border/40">
-          {filteredProjects.map((project, index) => (
-             <motion.a
-                href={project.link}
-                target="_blank"
-                key={project.id}
-                onMouseEnter={() => setHoveredProject(project.id)}
-                onMouseLeave={() => setHoveredProject(null)}
-                className="group flex items-center justify-between border-b border-border/40 py-12 transition-all hover:bg-muted/10 px-8 -mx-8 rounded-2xl cursor-none"
-             >
-                <div className="flex items-center gap-12 w-full">
-                  <span className="text-xl font-bold opacity-30 group-hover:opacity-100 transition-opacity w-8">
-                    0{index + 1}
-                  </span>
-                  <h3 className="text-5xl font-display font-black tracking-tight text-foreground/80 group-hover:text-primary transition-all duration-500 group-hover:translate-x-4 mix-blend-difference z-10 relative">
-                    {project.title}
-                  </h3>
-                  
-                  <div className="flex flex-wrap gap-3 ml-auto z-10">
-                    {project.tags.map(tag => (
-                      <span key={tag} className="text-sm font-semibold tracking-wide px-4 py-2 bg-secondary/50 rounded-full border border-border group-hover:border-primary/30 transition-colors">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="flex ml-12 opacity-0 group-hover:opacity-100 -translate-x-8 group-hover:translate-x-0 transition-all duration-500 text-primary z-10 w-12 h-12 bg-primary/10 rounded-full items-center justify-center">
-                  <ArrowRight className="w-6 h-6" />
-                </div>
-             </motion.a>
-           ))}
-        </div>
-
-        {/* ======================= */}
-        {/* MOBILE LAYOUT (CARDS)   */}
-        {/* ======================= */}
         <motion.div 
           layout
-          className="grid lg:hidden gap-8"
+          className="grid md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-3 gap-8"
         >
           <AnimatePresence mode="popLayout">
             {filteredProjects.map((project, index) => (
@@ -253,12 +177,13 @@ export const Projects = () => {
                 exit={{ opacity: 0, scale: 0.9, transition: { duration: 0.2 } }}
                 transition={{ duration: 0.5, delay: index * 0.05, type: "spring", stiffness: 200, damping: 20 }}
                 key={project.id}
-                className="group relative bg-card/80 backdrop-blur-xl rounded-[2rem] overflow-hidden border border-border/60 hover:border-primary/50 transition-colors duration-500 premium-card flex flex-col shadow-lg"
+                className="group relative bg-card/80 backdrop-blur-xl rounded-[2rem] overflow-hidden border border-border/60 hover:border-primary/50 transition-colors duration-500 premium-card flex flex-col shadow-lg hover:shadow-primary/10"
               >
                 {/* Visual Header / Image Box */}
-                <div className="relative h-64 overflow-hidden pt-2 px-2 rounded-t-[2rem]">
+                <div className="relative h-64 overflow-hidden p-2 rounded-t-[2rem]">
                   <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent z-10" />
                   
+                  {/* Floating Stats Badge - Psychological Trigger (Social Proof) */}
                   <motion.div 
                     initial={{ opacity: 0, x: -20 }}
                     whileInView={{ opacity: 1, x: 0 }}
@@ -282,7 +207,7 @@ export const Projects = () => {
                   />
                 </div>
 
-                {/* Content Box */}
+                {/* Cognitive Box (Content) */}
                 <div className="p-8 flex-1 flex flex-col relative z-20 -mt-6 bg-card rounded-[2rem] shadow-[0_-10px_30px_rgba(0,0,0,0.1)] border-t border-border/50">
                   <div className="flex items-center gap-2 mb-3">
                     <Target className="w-4 h-4 text-muted-foreground" />
@@ -324,6 +249,9 @@ export const Projects = () => {
                     </Button>
                   </div>
                 </div>
+                
+                {/* Ethereal Glow on Hover */}
+                <div className="absolute inset-0 border-[2px] border-transparent group-hover:border-primary/20 rounded-[2rem] pointer-events-none transition-colors duration-700" />
               </motion.div>
             ))}
           </AnimatePresence>
