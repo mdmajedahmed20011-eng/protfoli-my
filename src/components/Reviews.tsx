@@ -29,8 +29,8 @@ const reviews = [
   },
   {
     id: 4,
-    name: "Client",
-    position: "Executive Director",
+    name: "Founder",
+    position: "25 Business",
     avatar: "/assets/logo/reviwe by ceo.webp",
     content: "Phenomenal attention to detail. Instead of just delivering code, they delivered a business solution designed to grow our revenue. I highly recommend them to anyone scaling their brand.",
     rating: 5,
