@@ -1,132 +1,204 @@
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { 
   Target, 
   Zap, 
   TrendingUp, 
   Award,
-  ArrowUpRight,
+  ArrowRight,
   Sparkles
 } from "lucide-react";
-import { motion } from "framer-motion";
-import { AnimatedSection, StaggerContainer, StaggerItem } from "./animations/AnimatedSection";
+import { AnimatedSection } from "./animations/AnimatedSection";
 
 const services = [
   {
+    id: "01",
+    title: "Conversion Alchemy",
+    subtitle: "UI/UX that prints money",
+    description: "I don't just build websites. I engineer psychological journeys. Every pixel, button, and color choice is aggressively optimized to turn casual browsers into rabid buyers. We sell experiences, not just products.",
     icon: Target,
-    title: "Conversion-First UI/UX Design",
-    description: "I don't just build websites; I engineer psychological journeys. Every button, color, and layout choice is data-driven to maximize your conversion rate and turn visitors into eager buyers.",
-    features: ["Consumer Psychology", "Frictionless Checkout", "Mobile-First"],
-    className: "md:col-span-2 lg:col-span-2 bg-gradient-to-br from-card to-card/50",
-    glowColor: "bg-primary/20"
+    color: "from-blue-600 to-cyan-400",
+    glow: "bg-cyan-500/30",
+    features: ["Neuro-Design", "Frictionless Checkouts", "Mobile-First"]
   },
   {
-    icon: Zap,
+    id: "02",
     title: "Performance Engineering",
-    description: "A 1-second delay costs you 7% of conversions. I optimize your store's architecture to load at lightning speed, keeping buyers glued to their screens.",
-    features: ["Core Web Vitals", "Sub-2s Loads"],
-    className: "col-span-1 bg-card",
-    glowColor: "bg-amber-500/20"
+    subtitle: "Because patience is dead",
+    description: "A 1-second delay costs you 7% in conversions. I architect Shopify stores that load at lightning speed. Zero bloat. Flawless code. Instant gratification for your buyers.",
+    icon: Zap,
+    color: "from-amber-500 to-orange-400",
+    glow: "bg-amber-500/30",
+    features: ["Sub-2s Loads", "Core Web Vitals", "Clean Code"]
   },
   {
+    id: "03",
+    title: "AOV Maximization",
+    subtitle: "Ethically stealing more revenue",
+    description: "Traffic is too expensive to waste. I build strategic up-sells, cross-sells, and post-purchase funnels that maximize the Lifetime Value (LTV) and Average Order Value of every single customer.",
     icon: TrendingUp,
-    title: "AOV Maximization Systems",
-    description: "Traffic is expensive. I implement strategic upsells, cross-sells, and post-purchase funnels to legally steal maximum revenue out of every single customer interaction.",
-    features: ["Strategic Upsells", "Sales Funnels"],
-    className: "col-span-1 bg-card",
-    glowColor: "bg-green-500/20"
+    color: "from-emerald-500 to-green-400",
+    glow: "bg-green-500/30",
+    features: ["Strategic Upsells", "Sales Funnels", "Cart Optimization"]
   },
   {
+    id: "04",
+    title: "Premium Positioning",
+    subtitle: "Charge 3x more effortlessly",
+    description: "Stand out in a sea of generic dropshippers. I craft premium, hyper-trustworthy brand aesthetics that elevate your perceived value, allowing you to dominate your market.",
     icon: Award,
-    title: "Premium Brand Positioning",
-    description: "Stand out in a crowded, noisy market. I craft premium, highly-trustworthy aesthetics that elevate your brand's perceived value, allowing you to charge more and sell easier.",
-    features: ["High-End Aesthetics", "Trust Building Elements", "Custom Assets"],
-    className: "md:col-span-2 lg:col-span-2 bg-gradient-to-tr from-card to-card/50",
-    glowColor: "bg-purple-500/20"
+    color: "from-purple-600 to-pink-500",
+    glow: "bg-purple-500/30",
+    features: ["High-End Aesthetics", "Trust Building", "Custom Assets"]
   }
 ];
 
 export const Services = () => {
+  const [activeIdx, setActiveIdx] = useState(0);
+  const activeService = services[activeIdx];
+
   return (
-    <section id="services" className="relative py-24 overflow-hidden bg-background">
-      {/* Background Orbs */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-0 right-1/4 outline-none border-none">
-          <div className="w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] mix-blend-screen animate-pulse" />
-        </div>
-        <div className="absolute bottom-0 left-1/4 outline-none border-none">
-          <div className="w-[600px] h-[600px] bg-accent/10 rounded-full blur-[120px] mix-blend-screen" />
-        </div>
+    <section id="services" className="relative py-32 bg-background overflow-hidden">
+      {/* Abstract Background Elements */}
+      <div className="absolute inset-0 pointer-events-none overflow-hidden">
+        <div className="absolute top-0 w-full h-[1px] bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
+        <div className="absolute top-[20%] left-[10%] w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] mix-blend-screen" />
       </div>
 
       <div className="container-custom relative z-10">
-        {/* Section Header */}
-        <AnimatedSection className="text-center max-w-3xl mx-auto mb-20">
+        <AnimatedSection className="mb-20">
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-bold tracking-wide uppercase mb-6 border border-primary/20">
             <Sparkles className="w-4 h-4" />
-            <span>Not Just Another Developer</span>
+            <span>The Growth Engine</span>
           </div>
-          <h2 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold mt-4 mb-6 leading-tight">
-            I Build Stores Designed to <span className="gradient-text">Print Money</span>
+          <h2 className="text-4xl sm:text-6xl lg:text-7xl font-display font-bold mt-4 mb-6 leading-none max-w-4xl tracking-tight">
+            Not just "Services". <br />
+            <span className="gradient-text italic">Business Transformations.</span>
           </h2>
-          <p className="text-lg text-muted-foreground">
-            Forget about generic templates and "app integrations." 
-            My entire process is reverse-engineered focused around one single metric: <strong className="text-foreground">Scaling your Revenue.</strong>
-          </p>
         </AnimatedSection>
 
-        {/* Bento Grid layout */}
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto" staggerDelay={0.15}>
-          {services.map((service, index) => (
-            <StaggerItem key={index} className={service.className}>
-              <motion.div
-                className="group relative rounded-3xl p-8 sm:p-10 border border-border hover:border-primary/50 transition-all duration-500 h-full overflow-hidden flex flex-col justify-between shadow-lg"
-                whileHover={{ y: -5 }}
-              >
-                {/* Background Interactive Glow */}
-                <div className={`absolute -right-20 -top-20 w-64 h-64 rounded-full blur-[80px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none ${service.glowColor}`} />
-
-                <div>
-                  {/* Icon */}
-                  <div className="w-16 h-16 rounded-2xl bg-secondary/80 backdrop-blur-sm border border-border flex items-center justify-center mb-8 group-hover:scale-110 transition-transform duration-500 shadow-md">
-                    <service.icon className="w-8 h-8 text-primary" />
+        {/* Interactive Split Layout for Desktop */}
+        <div className="hidden lg:flex gap-16 items-center">
+          {/* Left Column: Interactive List */}
+          <div className="w-1/2 flex flex-col gap-4">
+            {services.map((service, index) => {
+              const isActive = index === activeIdx;
+              return (
+                <div
+                  key={service.id}
+                  onMouseEnter={() => setActiveIdx(index)}
+                  className={`group relative cursor-pointer p-8 rounded-3xl transition-all duration-500 border overflow-hidden ${
+                    isActive 
+                      ? 'bg-card/80 border-primary/30 shadow-2xl scale-[1.02]' 
+                      : 'bg-transparent border-transparent hover:bg-card/30'
+                  }`}
+                >
+                  {/* Subtle active glow */}
+                  {isActive && (
+                    <motion.div 
+                      layoutId="activeGlow"
+                      className="absolute inset-0 bg-gradient-to-r from-primary/10 to-transparent opacity-50"
+                      initial={false}
+                      transition={{ duration: 0.5, ease: "anticipate" }}
+                    />
+                  )}
+                  
+                  <div className="relative z-10 flex items-center justify-between">
+                    <div>
+                      <div className="text-sm font-bold uppercase tracking-widest text-muted-foreground mb-2">
+                        {service.id} — {service.subtitle}
+                      </div>
+                      <h3 className={`text-3xl font-display font-bold transition-colors duration-300 ${
+                        isActive ? 'text-foreground' : 'text-muted-foreground group-hover:text-foreground'
+                      }`}>
+                        {service.title}
+                      </h3>
+                    </div>
+                    
+                    <div className={`w-12 h-12 rounded-full border flex items-center justify-center transition-all duration-500 ${
+                      isActive ? 'border-primary bg-primary text-primary-foreground' : 'border-border text-muted-foreground group-hover:border-foreground group-hover:text-foreground'
+                    }`}>
+                      <ArrowRight className={`w-5 h-5 transition-transform duration-500 ${isActive ? '-rotate-45' : ''}`} />
+                    </div>
                   </div>
-
-                  {/* Content */}
-                  <h3 className="text-2xl font-display font-bold mb-4 group-hover:text-primary transition-colors">
-                    {service.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed text-[15px] mb-8">
-                    {service.description}
-                  </p>
                 </div>
+              );
+            })}
+          </div>
 
-                {/* Bottom row: Features & CTA */}
-                <div>
-                  <div className="flex flex-wrap gap-2 mb-8">
-                    {service.features.map((feature) => (
-                      <span
-                        key={feature}
-                        className="px-3 py-1.5 bg-background border border-border/50 rounded-full text-xs font-semibold text-muted-foreground group-hover:border-primary/30 group-hover:text-foreground transition-colors duration-300 shadow-sm"
-                      >
-                        {feature}
-                      </span>
-                    ))}
+          {/* Right Column: Dynamic Showcase Presentation */}
+          <div className="w-1/2 h-[600px] relative">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={activeService.id}
+                initial={{ opacity: 0, y: 40, filter: "blur(10px)", scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, filter: "blur(0px)", scale: 1 }}
+                exit={{ opacity: 0, y: -40, filter: "blur(10px)", scale: 0.95 }}
+                transition={{ duration: 0.5, ease: [0.25, 0.4, 0.25, 1] }}
+                className="absolute inset-0 w-full h-full rounded-[2.5rem] bg-card border border-border/50 shadow-2xl overflow-hidden flex flex-col p-12"
+              >
+                {/* Dynamic Background Aurora Effect */}
+                <div className={`absolute top-0 right-0 w-[400px] h-[400px] rounded-full blur-[100px] opacity-40 mix-blend-screen transition-colors duration-1000 ${activeService.glow}`} />
+                <div className="absolute inset-0 bg-gradient-to-b from-transparent via-background/50 to-background/90" />
+
+                <div className="relative z-10 flex flex-col h-full">
+                  {/* Floating Icon */}
+                  <div className={`w-20 h-20 rounded-3xl bg-gradient-to-br ${activeService.color} flex items-center justify-center shadow-lg mb-auto`}>
+                    <activeService.icon className="w-10 h-10 text-white" />
                   </div>
 
-                  {/* Aesthetic Line + Link */}
-                  <div className="pt-6 border-t border-border/50 flex items-center justify-between group-hover:border-primary/30 transition-colors">
-                    <span className="text-sm font-semibold text-muted-foreground group-hover:text-primary transition-colors">
-                      Discover How
-                    </span>
-                    <div className="w-10 h-10 rounded-full bg-background border border-border flex items-center justify-center group-hover:bg-primary group-hover:text-primary-foreground group-hover:border-primary transition-all duration-300 shadow-sm">
-                      <ArrowUpRight className="w-5 h-5" />
+                  <div className="mt-auto">
+                    <h3 className="text-4xl font-display font-bold mb-6 text-white text-glow">
+                      {activeService.title}
+                    </h3>
+                    <p className="text-lg text-muted-foreground mb-8 leading-relaxed max-w-md">
+                      {activeService.description}
+                    </p>
+                    
+                    <div className="flex flex-wrap gap-3">
+                      {activeService.features.map(feature => (
+                        <span key={feature} className="px-4 py-2 rounded-full bg-background/50 backdrop-blur-md border border-border text-sm font-semibold text-foreground">
+                          {feature}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </div>
               </motion.div>
-            </StaggerItem>
-          ))}
-        </StaggerContainer>
+            </AnimatePresence>
+          </div>
+        </div>
 
+        {/* Mobile Layout: Stacked Cards */}
+        <div className="lg:hidden flex flex-col gap-8">
+          {services.map((service) => (
+            <div key={service.id} className="relative rounded-[2rem] bg-card border border-border/50 overflow-hidden p-8">
+              <div className={`absolute top-0 right-0 w-[200px] h-[200px] rounded-full blur-[80px] opacity-30 ${service.glow}`} />
+              
+              <div className="relative z-10">
+                <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center shadow-lg mb-8`}>
+                  <service.icon className="w-8 h-8 text-white" />
+                </div>
+                
+                <div className="text-xs font-bold uppercase tracking-widest text-primary mb-2">
+                  {service.id} — {service.subtitle}
+                </div>
+                <h3 className="text-3xl font-display font-bold mb-4">{service.title}</h3>
+                <p className="text-muted-foreground mb-8 leading-relaxed">
+                  {service.description}
+                </p>
+                
+                <div className="flex flex-wrap gap-2">
+                  {service.features.map(feature => (
+                     <span key={feature} className="px-3 py-1.5 rounded-full bg-secondary/50 text-xs font-semibold text-foreground">
+                       {feature}
+                     </span>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
