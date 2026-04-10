@@ -6,7 +6,7 @@ import { AnimatedSection, StaggerContainer, StaggerItem, MagneticButton } from "
 const pricingPlans = [
   {
     name: "Basic Starter",
-    price: "$200",
+    price: "$199",
     priceNote: "/project",
     description: "Perfect for new brands launching their first Shopify store.",
     features: [
@@ -25,7 +25,7 @@ const pricingPlans = [
   },
   {
     name: "Growth Plan",
-    price: "$250",
+    price: "$249",
     priceNote: "/project",
     description: "For growing brands ready to scale their online presence.",
     features: [
@@ -56,7 +56,7 @@ const pricingPlans = [
   },
   {
     name: "Premium Scale",
-    price: "$400",
+    price: "$399",
     priceNote: "/project",
     description: "Complete solution for established brands with complex needs.",
     features: [
@@ -89,12 +89,12 @@ export const Pricing = () => {
       {/* Background */}
       <div className="absolute inset-0">
         <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-primary/30 to-transparent" />
-        <motion.div 
+        <motion.div
           className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/10 rounded-full blur-[120px]"
           animate={{ scale: [1, 1.2, 1] }}
           transition={{ duration: 8, repeat: Infinity }}
         />
-        <motion.div 
+        <motion.div
           className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-accent/10 rounded-full blur-[100px]"
           animate={{ scale: [1, 1.3, 1] }}
           transition={{ duration: 10, repeat: Infinity, delay: 2 }}
@@ -110,7 +110,7 @@ export const Pricing = () => {
             <span className="gradient-text">Success</span>
           </h2>
           <p className="text-lg text-muted-foreground">
-            Transparent pricing with no hidden fees. Choose the package that fits 
+            Transparent pricing with no hidden fees. Choose the package that fits
             your goals and budget.
           </p>
         </AnimatedSection>
@@ -120,11 +120,10 @@ export const Pricing = () => {
           {pricingPlans.map((plan) => (
             <StaggerItem key={plan.name}>
               <motion.div
-                className={`relative bg-card rounded-3xl p-8 border transition-all duration-500 h-full ${
-                  plan.popular 
-                    ? "border-primary lg:scale-105" 
+                className={`relative bg-card rounded-3xl p-8 border transition-all duration-500 h-full ${plan.popular
+                    ? "border-primary lg:scale-105"
                     : "border-border hover:border-primary/50"
-                }`}
+                  }`}
                 whileHover={{ y: plan.popular ? -4 : -8 }}
                 transition={{ duration: 0.3 }}
                 style={{
@@ -133,7 +132,7 @@ export const Pricing = () => {
               >
                 {/* Popular badge */}
                 {plan.popular && (
-                  <motion.div 
+                  <motion.div
                     className="absolute -top-4 left-1/2 -translate-x-1/2"
                     initial={{ y: -20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
@@ -160,8 +159,8 @@ export const Pricing = () => {
                 {/* Features */}
                 <ul className="space-y-3 mb-6">
                   {plan.features.map((feature, i) => (
-                    <motion.li 
-                      key={feature} 
+                    <motion.li
+                      key={feature}
                       className="flex items-start gap-3"
                       initial={{ opacity: 0, x: -10 }}
                       whileInView={{ opacity: 1, x: 0 }}
@@ -174,11 +173,11 @@ export const Pricing = () => {
                       <span className="text-sm text-foreground/80">{feature}</span>
                     </motion.li>
                   ))}
-                  
+
                   {/* Highlights with gift icon */}
                   {plan.highlights && plan.highlights.map((highlight, i) => (
-                    <motion.li 
-                      key={highlight} 
+                    <motion.li
+                      key={highlight}
                       className="flex items-start gap-3"
                       initial={{ opacity: 0, x: -10 }}
                       whileInView={{ opacity: 1, x: 0 }}
@@ -201,13 +200,12 @@ export const Pricing = () => {
                 {/* CTA Button */}
                 <MagneticButton strength={0.1} className="w-full mt-auto">
                   <Button
-                    className={`w-full py-6 text-base font-semibold rounded-full group ${
-                      plan.popular 
-                        ? "bg-primary hover:bg-primary/90 text-primary-foreground" 
+                    className={`w-full py-6 text-base font-semibold rounded-full group ${plan.popular
+                        ? "bg-primary hover:bg-primary/90 text-primary-foreground"
                         : plan.name === "Premium Scale"
-                        ? "bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white"
-                        : "bg-amber-500 hover:bg-amber-600 text-white"
-                    }`}
+                          ? "bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white"
+                          : "bg-amber-500 hover:bg-amber-600 text-white"
+                      }`}
                     onClick={() => openWhatsApp(plan.name)}
                   >
                     {plan.buttonText}
@@ -220,7 +218,7 @@ export const Pricing = () => {
 
         {/* Custom quote */}
         <AnimatedSection className="text-center mt-16" delay={0.5}>
-          <motion.div 
+          <motion.div
             className="inline-flex items-center gap-4 px-6 py-4 bg-card rounded-2xl border border-border"
             whileHover={{ scale: 1.02 }}
           >
